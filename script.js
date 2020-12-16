@@ -4,11 +4,15 @@ var startQuizEl = document.querySelector("#start");
 var timerEl = document.querySelector("#timer");
 var titleEl = document.querySelector(".title");
 var questionNumber = -1;
+var time = 75;
 var submitEl = document.createElement("button");
 var goBackEl = document.createElement("button");
 var clearEl = document.createElement("button");
 var InitialEl = document.createElement("p");
 var formEl = document.createElement("input");
+var answerBool = true;
+
+timerEl.textContent = "Time: " + time;
 
 InitialEl.textContent = "Enter Intials: ";
 InitialEl.setAttribute("style", "text-align: left; float: left");
@@ -139,7 +143,7 @@ clearEl.addEventListener("click", function () {
   descriptionEl.remove();
 });
 
-goBackEl.addEventListener("click", function() {
+goBackEl.addEventListener("click", function () {
   location.reload();
 });
 
@@ -147,24 +151,59 @@ startQuizEl.addEventListener("click", function () {
   descriptionEl.remove();
   startQuizEl.remove();
   generateContent();
+
+  var countdown = setInterval(function () {
+    if (time > 0) {
+      time--;
+      timerEl.textContent = "Time: " + time;
+    } else {
+      timerEl.textContent = "Time: " + 0;
+      clearTimeout(countdown);
+      alert("Quiz Over");
+    }
+  }, 1000);
 });
 
 aEl.addEventListener("click", function () {
+  var a = "1";
+  if (a === quizObj.correctValue[questionNumber]) {
+    answerBool = true;
+  } else {
+    answerBool = false;
+  }
   generateContent();
 });
 bEl.addEventListener("click", function () {
+  var b = "2";
+  if (b === quizObj.correctValue[questionNumber]) {
+    answerBool = true;
+  } else {
+    answerBool = false;
+  }
   generateContent();
 });
 cEl.addEventListener("click", function () {
+  var c = "3";
+  if (c === quizObj.correctValue[questionNumber]) {
+    answerBool = true;
+  } else {
+    answerBool = false;
+  }
   generateContent();
 });
 dEl.addEventListener("click", function () {
+  var d = "4";
+  if (d === quizObj.correctValue[questionNumber]) {
+    answerBool = true;
+  } else {
+    answerBool = false;
+  }
   generateContent();
 });
 
 submitEl.addEventListener("click", function () {
   titleEl.textContent = "Highscores";
-  descriptionEl.textContent = formEl.value;
+  descriptionEl.textContent = formEl.value + "-" + time;
   descriptionEl.setAttribute(
     "style",
     "text-align: left; background-color: azure; padding-right: 70%; padding-top: 1%; padding-bottom: 1%;"
@@ -191,6 +230,44 @@ function generateContent() {
     document.querySelector(".column").appendChild(bEl);
     document.querySelector(".column").appendChild(cEl);
     document.querySelector(".column").appendChild(dEl);
+    var hrEl = document.createElement("hr");
+    var correctCheckEl = document.createElement("p");
+    var disapear = 2;
+    if (answerBool) {
+      hrEl.classList.add("solid");
+      document.querySelector(".column").append(hrEl);
+
+      correctCheckEl.textContent = "Correct!";
+      document.querySelector(".column").append(correctCheckEl);
+
+      var answerMethod = setInterval(function () {
+        if(disapear > 0) {
+          disapear--;
+        } else {
+          setInterval.clearTimeout
+          hrEl.remove();
+          correctCheckEl.remove();
+        }
+        
+      }, 1000);
+    } else {
+      hrEl.classList.add("solid");
+      document.querySelector(".column").append(hrEl);
+
+      correctCheckEl.textContent = "wrong!";
+      document.querySelector(".column").append(correctCheckEl);
+
+      var answerMethod = setInterval(function () {
+        if(disapear > 0) {
+          disapear--;
+        } else {
+          setInterval.clearTimeout
+          hrEl.remove();
+          correctCheckEl.remove();
+        }
+        
+      }, 1000);
+    }
   } else {
     questionNumber = -1;
     titleEl.textContent = "All Done!";
@@ -199,7 +276,7 @@ function generateContent() {
     cEl.remove();
     dEl.remove();
     descriptionEl = document.createElement("p");
-    descriptionEl.textContent = "Your final score is ";
+    descriptionEl.textContent = "Your final score is " + time;
     descriptionEl.setAttribute("style", "text-align: left");
     document.querySelector(".column").appendChild(descriptionEl);
     document.querySelector(".column").appendChild(InitialEl);

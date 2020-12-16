@@ -4,6 +4,22 @@ var startQuizEl = document.querySelector("#start");
 var timerEl = document.querySelector("#timer");
 var titleEl = document.querySelector(".title");
 var questionNumber = -1;
+var submitEl = document.createElement("button");
+submitEl.textContent = "submit";
+submitEl.classList.add("btn");
+submitEl.classList.add("btn-primary");
+submitEl.classList.add("submit");
+submitEl.setAttribute(
+  "style",
+  "background-color: blueviolet; border: none; margin: left; display: flex;"
+);
+var formEl = document.createElement("input");
+formEl.textContent = "Enter Intials: ";
+formEl.setAttribute(
+  "style",
+  "text-align: left;float: left;margin-left: 2%;margin-right: 2%;width: 50%;"
+);
+formEl.classList.add("form-control");
 
 //Intro Text
 descriptionEl.textContent =
@@ -11,35 +27,40 @@ descriptionEl.textContent =
 
 //Quiz
 var quizObj = {
-  question: [ //0
+  question: [
+    //0
     "Commonly used data types DO NOT include:",
     "The condition in an if / else statement must be enclose within ____.",
     "Arrays in javascript can be used to store ____.",
     "String values must be enclosed within ____ when being assigned to variables.",
     "A very useful tool used in development and debugging for printing content in the debugger is:",
   ],
-  answerOne: [ //1
+  answerOne: [
+    //1
     "1. Strings",
     "1. Quotes",
     "1. Numbers and Strings",
     "1. Commas",
     "1. Javascript",
   ],
-  answerTwo: [ //2
+  answerTwo: [
+    //2
     "2. Booleans",
     "2. Curly Brackets",
     "2. Other Arrays",
     "2. Curly Braces",
     "2. Terminal / Bash",
   ],
-  answerThree: [ //3
+  answerThree: [
+    //3
     "3. Alerts",
     "3. Parenthesis",
     "3. Booleans",
     "3. Quotes",
     "3. For Loops",
   ],
-  answerFour: [ //4
+  answerFour: [
+    //4
     "4. Numbers",
     "4. Square Brackets",
     "4. All of the above",
@@ -113,21 +134,34 @@ dEl.addEventListener("click", function () {
 function generateContent() {
   questionNumber++;
   if (questionNumber < 5) {
-  titleEl.textContent = quizObj.question[questionNumber];
-  aEl.textContent = quizObj.answerOne[questionNumber];
-  bEl.textContent = quizObj.answerTwo[questionNumber];
-  cEl.textContent = quizObj.answerThree[questionNumber];
-  dEl.textContent = quizObj.answerFour[questionNumber];
-  titleEl.setAttribute("style", "text-align: left");
-  document.querySelector(".column").appendChild(aEl);
-  document.querySelector(".column").appendChild(bEl);
-  document.querySelector(".column").appendChild(cEl);
-  document.querySelector(".column").appendChild(dEl);
-} else {
-  titleEl.textContent = "All Done!"
-  aEl.remove();
-  bEl.remove();
-  cEl.remove();
-  dEl.remove();
-}
+    titleEl.textContent = quizObj.question[questionNumber];
+    aEl.textContent = quizObj.answerOne[questionNumber];
+    bEl.textContent = quizObj.answerTwo[questionNumber];
+    cEl.textContent = quizObj.answerThree[questionNumber];
+    dEl.textContent = quizObj.answerFour[questionNumber];
+    titleEl.setAttribute("style", "text-align: left");
+    document.querySelector(".column").appendChild(aEl);
+    document.querySelector(".column").appendChild(bEl);
+    document.querySelector(".column").appendChild(cEl);
+    document.querySelector(".column").appendChild(dEl);
+  } else {
+    questionNumber = -1;
+    titleEl.textContent = "All Done!";
+    aEl.remove();
+    bEl.remove();
+    cEl.remove();
+    dEl.remove();
+    var descriptionEl = document.createElement("p");
+    descriptionEl.textContent = "Your final score is ";
+    descriptionEl.setAttribute("style", "text-align: left");
+    document.querySelector(".column").appendChild(descriptionEl);
+
+    var InitialEl = document.createElement("p");
+    InitialEl.textContent = "Enter Intials: ";
+    InitialEl.setAttribute("style", "text-align: left; float: left");
+    document.querySelector(".column").appendChild(InitialEl);
+
+    document.querySelector(".column").appendChild(formEl);
+    document.querySelector(".column").appendChild(submitEl);
+  }
 }

@@ -15,6 +15,6 @@ This is a simple 5 question quiz. The quiz checks whether your answers are right
 
 # Screenshots
 
-![./images/scrsht1.png]
-![./images/scrsht2.png]
-![./images/scrsht3.png]
+![Screenshot of Website](./images/scrsht1.png)
+![Screenshot of Website](./images/scrsht2.png)
+![Screenshot of Website](./images/scrsht3.png)

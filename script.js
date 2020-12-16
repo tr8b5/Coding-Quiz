@@ -1,10 +1,12 @@
+var pEl = document.querySelector(".description");
+pEl.textContent =
+  "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
 
 // ## Your Task
 
-// As you proceed in your journey to becoming a full-stack web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges. 
+// As you proceed in your journey to becoming a full-stack web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges.
 
 // To help you become familiar with these tests and give you a chance to apply the skills from this module, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework will teach you all the skills you need to succeed in this assignment.
-
 
 // ## User Story
 
@@ -13,7 +15,6 @@
 // I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 // SO THAT I can gauge my progress compared to my peers
 // ```
-
 
 // ## Acceptance Criteria
 
@@ -31,17 +32,15 @@
 // THEN I can save my initials and score
 // ```
 
-
 // ## Mock-Up
 
 // The following animation demonstrates the application functionality:
 
 // ![code quiz](./Assets/04-web-apis-homework-demo.gif)
 
-
 // ## Grading Requirements
 
-// This homework is graded based on the following criteria: 
+// This homework is graded based on the following criteria:
 
 // ### Technical Acceptance Criteria: 40%
 
@@ -76,7 +75,6 @@
 // * Repository contains multiple descriptive commit messages.
 
 // * Repository contains quality README file with description, screenshot, and link to deployed application.
-
 
 // ## Review
 

@@ -5,6 +5,32 @@ var timerEl = document.querySelector("#timer");
 var titleEl = document.querySelector(".title");
 var questionNumber = -1;
 var submitEl = document.createElement("button");
+var goBackEl = document.createElement("button");
+var clearEl = document.createElement("button");
+var InitialEl = document.createElement("p");
+var formEl = document.createElement("input");
+
+InitialEl.textContent = "Enter Intials: ";
+InitialEl.setAttribute("style", "text-align: left; float: left");
+
+goBackEl.textContent = "Go Back";
+goBackEl.classList.add("btn");
+goBackEl.classList.add("btn-primary");
+goBackEl.classList.add("back");
+goBackEl.setAttribute(
+  "style",
+  "background-color: blueviolet;border: none;margin: left;margin-right: 2%;display: flex;float: left;"
+);
+
+clearEl.textContent = "Clear Highscores";
+clearEl.classList.add("btn");
+clearEl.classList.add("btn-primary");
+clearEl.classList.add("clear");
+clearEl.setAttribute(
+  "style",
+  "background-color: blueviolet; border: none; margin: left; display: flex;"
+);
+
 submitEl.textContent = "submit";
 submitEl.classList.add("btn");
 submitEl.classList.add("btn-primary");
@@ -13,8 +39,7 @@ submitEl.setAttribute(
   "style",
   "background-color: blueviolet; border: none; margin: left; display: flex;"
 );
-var formEl = document.createElement("input");
-formEl.textContent = "Enter Intials: ";
+
 formEl.setAttribute(
   "style",
   "text-align: left;float: left;margin-left: 2%;margin-right: 2%;width: 50%;"
@@ -110,6 +135,14 @@ dEl.setAttribute(
 //events
 viewHighscoresEl.addEventListener("click", function () {});
 
+clearEl.addEventListener("click", function () {
+  descriptionEl.remove();
+});
+
+goBackEl.addEventListener("click", function() {
+  location.reload();
+});
+
 startQuizEl.addEventListener("click", function () {
   descriptionEl.remove();
   startQuizEl.remove();
@@ -127,6 +160,20 @@ cEl.addEventListener("click", function () {
 });
 dEl.addEventListener("click", function () {
   generateContent();
+});
+
+submitEl.addEventListener("click", function () {
+  titleEl.textContent = "Highscores";
+  descriptionEl.textContent = formEl.value;
+  descriptionEl.setAttribute(
+    "style",
+    "text-align: left; background-color: azure; padding-right: 70%; padding-top: 1%; padding-bottom: 1%;"
+  );
+  document.querySelector(".column").appendChild(goBackEl);
+  document.querySelector(".column").appendChild(clearEl);
+  InitialEl.remove();
+  formEl.remove();
+  submitEl.remove();
 });
 
 //functions
@@ -151,16 +198,11 @@ function generateContent() {
     bEl.remove();
     cEl.remove();
     dEl.remove();
-    var descriptionEl = document.createElement("p");
+    descriptionEl = document.createElement("p");
     descriptionEl.textContent = "Your final score is ";
     descriptionEl.setAttribute("style", "text-align: left");
     document.querySelector(".column").appendChild(descriptionEl);
-
-    var InitialEl = document.createElement("p");
-    InitialEl.textContent = "Enter Intials: ";
-    InitialEl.setAttribute("style", "text-align: left; float: left");
     document.querySelector(".column").appendChild(InitialEl);
-
     document.querySelector(".column").appendChild(formEl);
     document.querySelector(".column").appendChild(submitEl);
   }
